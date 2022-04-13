@@ -1,0 +1,7 @@
+FROM ubuntu:latest
+RUN pat update && apt install openssh-server -y
+RUN useradd -rm -d /home/ubuntu -d /bin/bash -g root -G sudo -u 1000 test
+RUN echo 'test:test' | chpasswd
+RUN service ssh start
+EXPOSE 22
+CMD ["/usr/sbin/ssd","-D"]
